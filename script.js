@@ -303,3 +303,143 @@ console.log(`Total sections: ${document.querySelectorAll('section').length}`);
 console.log(`Total cards: ${document.querySelectorAll('.about-card, .food-card, .place-card').length}`);
 console.log(`Total navigation items: ${document.querySelectorAll('.nav-menu li').length}`);
 
+// Visitor Statistics Chart
+document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('visitorChart');
+    if (ctx) {
+        const visitorChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2024년', '2025년 (예상)', '2026년 (추정)'],
+                datasets: [{
+                    label: '방문객 수 (명)',
+                    data: [16968203, 20000000, 22500000],
+                    backgroundColor: [
+                        'rgba(0, 71, 160, 0.8)',
+                        'rgba(205, 46, 58, 0.8)',
+                        'rgba(255, 215, 0, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(0, 71, 160, 1)',
+                        'rgba(205, 46, 58, 1)',
+                        'rgba(255, 215, 0, 1)'
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 10,
+                    barThickness: 80
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 14,
+                                weight: '600'
+                            },
+                            color: '#333',
+                            padding: 20
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '대한민국 연도별 방문객 통계',
+                        font: {
+                            family: "'Noto Sans KR', sans-serif",
+                            size: 20,
+                            weight: '700'
+                        },
+                        color: '#0047a0',
+                        padding: {
+                            top: 10,
+                            bottom: 30
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleFont: {
+                            family: "'Noto Sans KR', sans-serif",
+                            size: 14,
+                            weight: '600'
+                        },
+                        bodyFont: {
+                            family: "'Noto Sans KR', sans-serif",
+                            size: 13
+                        },
+                        padding: 15,
+                        cornerRadius: 8,
+                        displayColors: true,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y.toLocaleString() + '명';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 12
+                            },
+                            color: '#666',
+                            callback: function(value) {
+                                return value.toLocaleString() + '명';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)',
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 13,
+                                weight: '600'
+                            },
+                            color: '#333'
+                        },
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+
+        // Animate chart on scroll
+        const chartObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    visitorChart.update();
+                    chartObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        chartObserver.observe(ctx);
+    }
+});
+
+

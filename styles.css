@@ -630,6 +630,127 @@ html {
     font-size: 1.1rem;
 }
 
+/* Visitor Statistics Section */
+.visitor-stats-section {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: 15px;
+    margin-top: 3rem;
+    box-shadow: var(--shadow);
+}
+
+.stats-subtitle {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.stats-description {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.year-stat-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    color: var(--white);
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.year-stat-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.year-stat-card:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.year-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.year-badge.estimated::after {
+    content: '(추정)';
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
+    opacity: 0.9;
+}
+
+.visitor-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.visitor-label {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
+}
+
+.chart-container {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-container canvas {
+    max-height: 400px;
+}
+
+.stats-note {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.stats-note p {
+    margin: 0.3rem 0;
+}
+
 /* Footer */
 .footer {
     background: var(--dark-bg);
@@ -752,6 +873,29 @@ html {
     }
 }
 
+@media (max-width: 768px) {
+    .visitor-stats-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .stats-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .visitor-number {
+        font-size: 2rem;
+    }
+
+    .chart-container {
+        padding: 1rem;
+    }
+
+    .stats-subtitle {
+        font-size: 1.5rem;
+    }
+}
+
 @media (max-width: 480px) {
     .hero-title {
         font-size: 1.5rem;
@@ -764,6 +908,32 @@ html {
     .btn-primary, .btn-secondary {
         padding: 0.8rem 2rem;
         font-size: 0.9rem;
+    }
+
+    .visitor-stats-section {
+        padding: 1.5rem 1rem;
+        margin-top: 2rem;
+    }
+
+    .year-stat-card {
+        padding: 1.5rem;
+    }
+
+    .visitor-number {
+        font-size: 1.8rem;
+    }
+
+    .year-badge {
+        font-size: 1rem;
+        padding: 0.4rem 1.2rem;
+    }
+
+    .chart-container {
+        padding: 0.5rem;
+    }
+
+    .stats-note {
+        font-size: 0.8rem;
     }
 }
 
@@ -806,4 +976,5 @@ html {
         transform: translateX(0);
     }
 }
+
 

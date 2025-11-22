@@ -326,6 +326,40 @@
                 <p>한국관광공사 웹사이트를 방문하세요</p>
                 <a href="https://korean.visitkorea.or.kr" target="_blank" class="btn-secondary">한국관광공사 바로가기</a>
             </div>
+
+            <!-- Visitor Statistics Section -->
+            <div class="visitor-stats-section">
+                <h3 class="stats-subtitle">방문객 통계</h3>
+                <p class="stats-description">대한민국 연도별 방문객 수 및 추정치</p>
+                
+                <div class="stats-cards">
+                    <div class="year-stat-card">
+                        <div class="year-badge">2024</div>
+                        <div class="visitor-number">16,968,203</div>
+                        <div class="visitor-label">실제 방문객</div>
+                    </div>
+                    <div class="year-stat-card">
+                        <div class="year-badge estimated">2025</div>
+                        <div class="visitor-number">20,000,000</div>
+                        <div class="visitor-label">예상 방문객</div>
+                    </div>
+                    <div class="year-stat-card">
+                        <div class="year-badge estimated">2026</div>
+                        <div class="visitor-number">22,500,000</div>
+                        <div class="visitor-label">추정 방문객</div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="visitorChart"></canvas>
+                </div>
+
+                <div class="stats-note">
+                    <p>※ 2024년 실제 방문객 수: 16,968,203명</p>
+                    <p>※ 2025-2026년은 추정치입니다</p>
+                    <p>※ 출처: 한국관광공사</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -361,7 +395,9 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
+
 
